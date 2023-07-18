@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="caixa1"></div>
+    <div id="caixa2"></div>
+
+    <button onclick="fnajax('dados1.txt', cmd1 )">mostrar txt1</button>
+    <button onclick="fnajax('dados2.txt', cmd2 )">mostrar txt2</button>
+
+
+</body>
+<script>
+
+
+        function fnajax(url, fun){
+
+        //ajax
+        let pedido = new XMLHttpRequest();
+        //tratamento
+        pedido.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                fun(pedido);
+            } 
+        }
+
+        //resposta
+        pedido.open('GET', url, true);
+        pedido.send();
+
+        }
+
+
+        //funçao 1
+        function cmd1(p){
+            document.getElementById("caixa1").innerHTML = p.responseText;
+        }
+        function cmd2(p){
+            document.getElementById("caixa2").innerHTML = p.responseText;
+        }
+
+
+</script>
+</html>

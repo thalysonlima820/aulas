@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>hello word</h1>
+
+    <a href=""> link1</a>
+    <a href="" class="link2"> link2</a>
+    <a href="" id="link3"> link3</a>
+
+</body>
+
+<script>
+
+    $(document).ready(function(){
+
+        $('h1').css("color", "#f66")
+            .hide()
+            .delay('1000')
+            .fadeIn("slow")
+            .click(function(){
+                $('body').css("background", "#c30")
+                $('h1').css("color", "#fff")
+                $('a').css("color", "#fff")
+            });
+    })
+
+
+    $('a').css({color: 'red', display:'block', 'margin-bottom': '10px'});
+    $('.link2').css("color", "green");
+    $('#link3').css("color", "black");
+    $('*').css("padding", "10px");
+    $('h1, #link3').css({"border-bottom": "solid 3px blue", width: "170px"})
+
+
+
+</script>
+</html>

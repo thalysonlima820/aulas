@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+   
+</head>
+<body>
+
+        <div class="div1">
+            <h2>div1 em h2</h2>
+            <p>p da div1 <span>SPAN DENTRO do p da div1</span></p>
+            <span>SPAN DA DIV1</span>
+        </div>
+
+        <h2> apenas h2</h2>
+        <p class="p1"> apenas o p</p>
+        <p>segundo p</p>
+        <p>terceiro p</p>
+
+
+</body>
+
+<script>
+
+        $(document).ready(function(){
+
+            $('h2').css("margin", '0');
+            $('p').css({margin: '0', color: 'blue'});
+            $('.div1').css({'margin-bottom': '20px', background: '#ccc'});
+
+            // filhas
+
+            $('.div1 span').hide().delay('1000').fadeIn(1000).css({color: 'green','font-size': '15px'});
+
+            $('.div1 h2').hide().css({'font-size': '40px', color:'red'}).fadeIn(800);
+
+
+            //filhas direta do elemento
+
+            $('.div1 > span').css({color:'red'})
+
+            // elemento apos os selecionados
+
+            $('.p1 + p').css({'font-size': '25px'})
+
+            //atacando todos os elementos apos os selecionados
+
+            $('.p1 ~ p').css({color: 'black'})
+
+            
+
+        });
+
+</script>
+</html>

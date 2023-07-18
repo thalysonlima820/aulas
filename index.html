@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============== scroll reveal cdn ================ -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+    <!-- ============== box icon cdn  ===================== -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- ============== custom css file ==================  -->
+    <style>
+        /*
+    Global fonts 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;900&display=swap');
+
+/*
+    Global variables
+*/
+:root{
+    /* colors  */
+    --primary-color : #FD1AFD;
+    --secondary-color : #eedcee;
+    --main-txt-color : #000;
+    --secondary-txt-color : #FD1AFD;
+    --btn-bg-color : #f77ef7;
+    --btn-bg-hover-color : #FD1AFD;
+    --btn-txt-color : #fff;
+    --btn-bg-shadow: 2px 2px 6.7px rgba(0, 0, 0, 0.112),10px 10px 22px rgba(0, 0, 0, 0.22);
+    --hero-img-shadow:0.6px 0.6px 1.1px rgba(0, 0, 0, 0.073),2.8px 2.8px 4.5px rgba(0, 0, 0, 0.092),10.3px 10.3px 12.4px rgba(0, 0, 0, 0.105),30px 30px 25px rgba(0, 0, 0, 0.18);
+    --scroll-bar-color:#f77ef7;
+    --scroll-hover-bar-color:#FD1AFD;
+
+
+    /* typography */
+    /* font family  */
+    --main-font-family: 'Poppins', sans-serif;
+
+    /* font sizes  */
+    --fs-large:3rem; 
+    --fs-medium:1.8rem; 
+    --fs-regular:1.4; 
+
+    /* font weights  */
+    --fw-xlarge:900; 
+    --fw-large:700; 
+    --fw-medium:500; 
+    --fw-regular:400; 
+
+}.dark-theme{
+    /* colors  */
+    --secondary-color : #282C34;
+    --main-txt-color : #fff;
+    --btn-bg-shadow: 2px 2px 6.7px rgba(255, 255, 255, 0.112),10px 10px 22px rgba(255, 255, 255, 0.22);
+    --hero-img-shadow:0.6px 0.6px 1.1px rgba(255, 255, 255, 0.073),2.8px 2.8px 4.5px rgba(255, 255, 255, 0.092),10.3px 10.3px 12.4px rgba(255, 255, 255, 0.105),30px 30px 25px rgba(255, 255, 255, 0.18);
+}
+
+/*
+    Base 
+*/
+*,::before,::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--secondary-color);
+    font-family: var(--main-font-family);
+    transition: all .75s ease-in-out;
+}
+
+/*
+    Resuse classes
+*/
+.section{
+    padding: 50px 140px;
+    overflow: hidden;
+}
+
+.section-header{
+    font-size: var(--fs-large);
+    font-weight: var(--fw-large);
+    color: var(--main-txt-color);
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color);
+    text-decoration-thickness: 10px;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav li{
+    list-style-type: none;
+}
+.nav li a{
+    text-decoration: none;
+}
+
+.btn{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: var(--btn-bg-color);
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-large);
+    color: var(--btn-txt-color);
+    cursor: pointer;
+    transition: all .5s ease;
+}
+.btn i{
+    padding-left: 10px;
+}
+.btn:hover{
+    transform: translateY(-5px) scale(1.05);
+    background-color: var(--btn-bg-hover-color);
+    box-shadow: var(--btn-bg-shadow);
+}
+/* =============================== */
+
+/* =============== home section =============== */
+.home-section{
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+}
+
+.header-nav{
+    width: 100%;
+    position: relative;
+}
+
+.header-nav-list{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    opacity: 0;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 80px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 1rem;
+    backdrop-filter: blur(5px);
+    z-index: 99;
+    overflow: hidden;
+    transition: all .5s cubic-bezier(0.55, 0.085, 0.68 , 0.53) 0.1s;
+}
+.header-nav-list.open{
+    height: 50vh;
+    width: 350px;
+    visibility: visible;
+    opacity: 1;
+}
+.header-nav-list li{
+    opacity: 0;
+    transform: translateX(500%);
+    transition: transform .75s ease-in-out;
+    transition-delay: 1s;
+}
+.header-nav-list li.open{
+    opacity: 1;
+    transform: translateX(0);
+}
+.nav-link{
+    font-size: var(--fs-medium);
+    font-weight: var(--fw-medium);
+    color: var(--main-txt-color);
+}
+.nav-link:hover,
+.nav-link.active{
+    color: var(--primary-color) !important;
+}
+
+/* =============== menu icon =============== */
+.menu-icon{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+    font-size: var(--fs-medium);
+    color: var(--main-txt-color);
+}
+
+/* hero */
+.home-section .hero{
+    height: 100%;
+    width: auto;
+    flex-direction: column;
+}
+.hero .hero-img{
+    height: 50%;
+    width: auto;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.hero-img img{
+    width: 70%;
+    z-index: 2;
+}
+
+.hero-img-bg{
+    content: "";
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    background-color: #f77ef7;
+    border-radius: 50%;
+    box-shadow: var(--hero-img-shadow);
+}
+
+.hero-content{
+    height: 35vh;
+    width: 100%;
+    padding: 20px 0;
+    flex-direction: column;
+    text-align: center;
+    color: var(--main-txt-color);
+    overflow: hidden;
+}
+
+.hero-content .header{
+    font-size: var(--fs-large);
+}
+.hero-content span{
+    color: var(--primary-color);
+}
+
+.social-icon-list,
+.footer-nav{
+    width: 300px;
+    font-size: var(--fs-medium);
+    color: var(--primary-color);
+}
+.social-icon-list li,
+.footer-nav li{
+    cursor: pointer;
+    transition: transform .5s ease-in-out;
+}
+
+.social-icon-list li:hover,
+.footer-nav li:hover{
+    transform: translateY(-5px) scale(1.5);
+}
+
+/* =============== projects section ===============  */
+.project-section{
+    height: auto;
+    width: 100%;
+}
+
+.project{
+    height: auto;
+    width: 100%;
+    margin: 50px 0;
+    overflow: hidden;
+}
+
+.project .project-img{
+    height: 100%;
+    width: 60%;
+
+}
+
+.project-img img{
+    width: 100%;
+    border-radius: 1.5rem;
+}
+
+.project .project-content{
+    min-height: 30vh;
+    width: 50%;
+    padding-inline:50px ;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--main-txt-color);
+}
+
+.project-content .btn-group button{
+    margin-right: 20px;
+}
+/* =============== about section ===============  */
+.about-section{
+    height: auto;
+    width: 100%;
+}
+
+.about-content{
+    height: 90%;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.about-section .about-img{
+    height: 100%;
+    width: 50%;
+}
+
+.about-img img{
+    width: 80%;
+}
+
+.about-content .about-info{
+    height: 100%;
+    width: 50%;
+    color: var(--main-txt-color);
+}
+
+.about-info h1{
+    font-size: var(--fs-medium);
+}
+
+.about-info p{
+    font-size: var(--fs-regular);
+}
+/* =============== contact section ===============  */
+.contact-section{
+    height: auto;
+    width: 100%;
+    padding: 50px 0;
+}
+.contact-section form {
+    padding-top: 20px;
+}
+
+.contact-section form,
+form .contact-group{
+    flex-direction: column;
+}
+
+.contact-group{
+    height: auto;
+    width: 100%;
+}
+
+.contact-group input,
+textarea{
+    width: 350px;
+    margin: 10px 0;
+    padding: 1rem 1.2rem;
+    border-radius: .5rem;
+    background-color: rgba(238,220,238,0.6);
+    color: #000;
+    font-family: var(--main-font-family);
+    font-size: var(--fs-regular);
+    font-weight: var(--fw-medium);
+}
+
+.contact-group input::placeholder,
+textarea::placeholder{
+    font-size: var(--fs-regular);
+}
+
+textarea{
+    height: 11rem;
+}
+
+.submit-btn{
+    margin: 20px;
+}
+/* =============== footer section ===============  */
+.footer-section{
+    background-color: var(--primary-color);
+    color: #fff;
+    overflow: hidden;
+}
+
+.footer-nav li{
+    color: #fff;
+}
+
+/* =============== scroll bar style =============== */
+::-webkit-scrollbar{
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--scroll-bar-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--scroll-hover-bar-color);
+}
+/* =============== scroll top icon =============== */
+.scroll-top-icon{
+    visibility: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    font-size: var(--fs-large);
+    color: var(--primary-color);
+    cursor: pointer;
+    z-index: 9999;
+}
+.show-scroll{
+    visibility: visible;
+}
+/* =============== mode change icon ===============  */
+.mode-change-icon{
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+    font-size: var(--fs-medium);
+    color: var(--main-txt-color);
+}
+
+/* responsive design  */
+@media (max-width:768px) {
+    :root{
+        /* font sizes  */
+        --fs-large:2rem; 
+        --fs-medium:1.5rem; 
+        --fs-regular: 1rem; 
+    }
+
+    /* =============== reuse classes =============== */
+    .section{
+        padding: 0 20px;
+    }
+
+    /* =============== home page ===============  */
+    .header-nav-list{
+        top: 50px;
+    }
+
+    .hero .hero-img{
+        height: 300px;
+    }
+
+
+
+
+    /* =============== project section =============== */
+    .project{
+        flex-direction: column;
+    }
+
+    .project .project-img{
+        height: 50%;
+        width: 100%;
+    }
+
+    .project-img img{
+        height: 100%;
+    }
+
+    .project .project-content{
+        min-height: 45vh;
+        width: 100%;
+        padding-inline: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .project-content .btn-group button{
+        margin-right: 10px;
+    }
+
+    /* about section  */
+    .about-section .about-img{
+        height: 50%;
+        width: 100%;
+    }
+    .about-content{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content .about-info{
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    /* foooter section  */
+    .footer-section{
+        padding: 10px;
+        background-color: var(--primary-color);
+        color: #fff;
+        flex-direction: column;
+    }
+
+}
+    </style>
+
+    <title>Mini portfolio.</title>
+</head>
+<body>
+    <!-- =============== home page ==================  -->
+    <div class="home-section section flex " id="home">
+        <!-- navigation menu  -->
+        <div class="header-nav">
+            <!-- mode change icon  -->
+            <div class="mode-change-icon">
+                <i class="bx bx-moon" id="mode-change-icon"></i>
+            </div>
+
+            <!-- menu icon  -->
+            <div class="menu-icon">
+                <i class='bx bx-grid-alt' id="menu-icon"></i>
+            </div>
+
+            <!-- nav list  -->
+            <ul class="header-nav-list nav flex" id="header-nav-list">
+                <li>
+                    <a href="#home" class="nav-link active">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects" class="nav-link">
+                        Projects
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" class="nav-link">
+                        About me
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="nav-link">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+
+        <!-- hero section  -->
+        <div class="hero flex">
+            <div class="hero-img flex">
+                <img src="img/profile-pic.png" class="profile-pic" alt="">
+                <span class="hero-img-bg"></span>
+            </div>
+            <!-- hero content  -->
+            <div class="hero-content flex">
+                <h1 class="header">
+                    I'm 
+                    <span>
+                        Aurora
+                    </span>
+                    , a Web Developer
+                </h1>
+                
+                <h2 class="sub-header">
+                    I create Stunning 
+                    <span>
+                        Websites
+                    </span>
+                </h2>
+    
+                <button class="btn hero-btn">
+                    View my work
+                    <i class='bx bx-paper-plane' ></i>
+                </button>
+            </div>
+    
+            <!-- social icon list  -->
+            <div class="social-icon-list">
+                <ul class="nav flex">
+                    <li class="social-icon">
+                        <i class="bx bxl-facebook-circle"></i>
+                    </li>
+                    <li class="social-icon">
+                        <i class="bx bxl-instagram-alt"></i>
+                    </li>
+                    <li class="social-icon">
+                        <i class="bx bxl-twitter"></i>
+                    </li>
+                    <li class="social-icon">
+                        <i class="bx bxl-youtube"></i>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="scroll-top-icon" id="scroll-up">
+                <i class="bx bxs-chevron-up-circle" id="scroll-top-icon"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =============== projects section ============ -->
+    <div class="project-section section" id="projects">
+        <h1 class="section-header">
+            Projects
+        </h1>
+
+        <div class="project project-1 flex">
+            <div class="project-img">
+                <img src="img/project-1.png" alt="">
+            </div>
+
+            <div class="project-content flex">
+                <h1 class="project-header">
+                    Responsive landing page - Kickz
+                </h1>
+
+                <p class="project-description">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eligendi nulla eos ipsa illo expedita quos magnam voluptas porro, nisi a nemo laborum nihil fugit, voluptatibus amet dolorum. Provident eaque iusto ratione eveniet beatae dolorem reiciendis ipsum dolores quod cupiditate!
+                </p>
+
+                <div class="btn-group">
+                    <button class="btn live-demo-btn">
+                        Live Demo
+                    </button>
+                    <button class="btn view-code-btn">
+                        View Code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="project project-2 flex">
+            <div class="project-img">
+                <img src="img/project-2.png" alt="">
+            </div>
+
+            <div class="project-content flex">
+                <h1 class="project-header">
+                    Responsive portfolio landing page
+                </h1>
+
+                <p class="project-description">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat eligendi nulla eos ipsa illo expedita quos magnam voluptas porro, nisi a nemo laborum nihil fugit, voluptatibus amet dolorum. Provident eaque iusto ratione eveniet beatae dolorem reiciendis ipsum dolores quod cupiditate!
+                </p>
+
+                <div class="btn-group">
+                    <button class="btn live-demo-btn">
+                        Live Demo
+                    </button>
+                    <button class="btn view-code-btn">
+                        View Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== About Section ==============  -->
+    <div class="about-section section" id="about">
+        <h1 class="section-header">
+            About me
+        </h1>
+
+        <div class="about-content flex">
+            <div class="about-img flex">
+                <img src="img/profile-pic.png" alt="">
+            </div>
+
+            <div class="about-info">
+                <h1 class="content-header">
+                    Lorem ipsum dolor sit amet.
+                </h1>
+
+                <p class="content-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, possimus dignissimos! Officiis voluptatem repellendus quam asperiores quas nam quos maxime possimus voluptas beatae inventore reprehenderit harum, consectetur ut! Aut nobis facilis possimus delectus cum quas repellat, ullam neque eius alias!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== contact section ============= -->
+    <div class="contact-section section" id="contact">
+        <h1 class="section-header">
+            Contact me
+        </h1>
+
+        <form action="" class="contact-form flex">
+            <div class="contact-group flex">
+                <input type="text" name="username" placeholder="Your name" required id="">
+                <input type="email" name="email" placeholder="Your email" required id="">
+            </div>
+            <textarea name="" id="" required placeholder="Your message" cols="30" rows="10"></textarea>
+
+            <button class="btn submit-btn">
+                Send Message
+            </button>
+        </form>
+    </div>
+    <!-- =============== footer section =============  -->
+    <div class="footer-section section flex">
+        <div class="footer-header">
+            <h1>
+                Aurora
+            </h1>
+        </div>
+
+        <div class="footer-nav">
+            <ul class="nav flex">
+                <li class="social-icon">
+                    <i class="bx bxl-facebook-circle"></i>
+                </li>
+                <li class="social-icon">
+                    <i class="bx bxl-instagram-alt"></i>
+                </li>
+                <li class="social-icon">
+                    <i class="bx bxl-twitter"></i>
+                </li>
+                <li class="social-icon">
+                    <i class="bx bxl-youtube"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- =============== custom js file  ============= -->
+    <script>
+        // menu show and hide toggle 
+const menuIcon = document.getElementById("menu-icon");
+const headerNav = document.getElementById("header-nav-list");
+const headerNavItems = document.querySelectorAll('.header-nav-list li')
+
+menuIcon.addEventListener("click", () => {
+    headerNav.classList.toggle("open");
+    if(menuIcon.classList.contains("bx-grid-alt")){
+        menuIcon.className = "bx bx-chevrons-right";
+        headerNavItems.forEach((item,index) => {
+            item.classList.toggle("open");
+            item.style.transitionDelay = `${index * 0.5}s`;
+        })
+    }else{
+        menuIcon.className = "bx bx-grid-alt";
+        headerNavItems.forEach((item,index) => {
+            item.classList.toggle("open");
+            item.style.transitionDelay = "0s";
+        })
+    }
+})
+
+// show scroll icon 
+const scrollTopIcon = document.getElementById('scroll-top-icon');
+
+const scrollUp = () => {
+    const scrollUp = document.getElementById('scroll-up');
+    this.scrollY >= 350? scrollUp.classList.add('show-scroll') : scrollUp.classList.remove('show-scroll');
+}
+
+window.addEventListener('scroll',scrollUp)
+// scroll to top 
+scrollTopIcon.addEventListener("click", () => {
+    const scrollToTop = () => {
+        if(window.pageYOffset > 0) {
+            window.scroll(0 , window.pageYOffset - 50);
+            requestAnimationFrame(scrollToTop);
+        }
+    };
+    scrollToTop();
+})
+
+//scroll reveal animation 
+// scroller reveal 
+animateElement = (element,origin,delay,distance) => {
+    // Initialize ScrollReveal with options
+    const sr = ScrollReveal({
+        delay: delay,
+        distance: distance,
+        duration: 1000,
+        easing: 'ease',
+        origin: origin
+    });
+  
+    // Reveal the element
+    sr.reveal(element);
+}
+
+// section header 
+animateElement('.section-header','left',500,'250px');
+// hero section 
+animateElement('.hero-img','top',500,'250px');
+animateElement('.hero-content','bottom',500,'100px');
+animateElement('.social-icon-list','right',700,'250px');
+// project section 
+animateElement('.project-1','left',700,'250px');
+animateElement('.project-2','right',900,'250px');
+// about section 
+animateElement('.about-img','left',700,'250px');
+animateElement('.about-info','right',900,'250px');
+// contact section 
+animateElement('.contact-form','right',700,'250px');
+
+// footer section 
+animateElement('.footer-section','bottom',500,'250px');
+
+// light and dark mode toggle 
+const modeChangeIcon = document.getElementById("mode-change-icon");
+
+modeChangeIcon.addEventListener("click", () => {
+    if(modeChangeIcon.classList.contains("bx-moon")){
+        modeChangeIcon.classList.remove("bx-moon");
+        modeChangeIcon.classList.add("bx-sun");
+        
+        // toggle light and dark mode 
+        document.body.classList.toggle('dark-theme');
+    }else{
+        modeChangeIcon.classList.remove("bx-sun");
+        modeChangeIcon.classList.add("bx-moon");
+        // toggle light and dark mode 
+        document.body.classList.toggle('dark-theme');
+    }
+})
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="caixa1"></div>
+   <div id="caixa2"></div>
+
+   <button onclick="apertar('dados1.txt', cmd1)">texto 1</button>
+   <button onclick="apertar('dados2.txt', cmd2)">texto 2</button>
+   
+</body>
+<script>
+
+    function apertar( ope, fun){
+
+        //ajax
+        var pedido = new XMLHttpRequest();
+
+
+        // tratamento das informaçoes
+        pedido.onreadystatechange = function(){
+
+            // verificaçao
+        if(this.readyState == 4 && this.status == 200){
+
+
+            fun(this)
+            
+            
+
+
+
+        } else{
+            document.getElementById("caixa").innerText = "erro"
+        } }
+
+
+
+
+        //execultar
+        pedido.open("GET", ope, true);
+        pedido.send();
+
+
+
+    }
+ 
+
+    function cmd1(p){
+        document.getElementById("caixa1").innerHTML = p.responseText;
+    }
+    function cmd2(p){
+        document.getElementById("caixa2").innerHTML = p.responseText;
+    }
+
+
+
+</script>
+</html>

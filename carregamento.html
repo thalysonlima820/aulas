@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <style>
+        .tela1{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+        .tela2{
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="tela1"></div>
+    <div class="tela2"></div>
+</body>
+<script>
+
+    $(document).ready(function(){
+
+        $('.tela2')
+            setTimeout(() => {
+                $('.tela2').css({display: 'flex'});
+                $('.tela1').css({display: 'none'});
+            }, 3000);
+
+        
+
+    })
+
+
+    // function carregar(){
+
+    //     var tela1 = document.querySelector(".tela1");
+    //     var tela2 = document.querySelector(".tela2");
+
+    //     setTimeout(() => {
+    //         tela2.style.display = "flex";
+    //     }, 2000);
+        
+    // }
+
+
+    carregar()
+
+
+
+</script>
+</html>

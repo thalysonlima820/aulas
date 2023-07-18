@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div id="caixa"></div>
+
+        <button onclick="vai()">mostrar txt</button>
+</body>
+
+<script>
+
+
+    function vai(){
+
+        //ajax
+        let pedido = new XMLHttpRequest();
+        //tratamento
+        pedido.onreadystatechange = function(){
+
+            let res = pedido.responseText;
+            res += "<h2> isso é tudo </h2>";
+
+            document.getElementById("caixa").innerHTML = res;
+        }
+        
+
+
+        //resposta
+        pedido.open("get", "texto.txt", true);
+        pedido.send();
+
+    }
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<lista>
+
+    <clientes>
+        <nome> Thalyson Lima </nome>
+        <idade> 21 </idade>
+    </clientes>
+    <clientes>
+        <nome> Nivia Marques </nome>
+        <idade> 20 </idade>
+    </clientes>
+    <clientes>
+        <nome> Antonio Lima </nome>
+        <idade> 25 </idade>
+    </clientes>
+
+</lista>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="hg.js"></script>
+
+    <style>
+        img{
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="img/imagem3.jpg" alt="">
+ 
+    
+</body>
+<script>
+
+$(function() {
+    $('img').error(function() {
+        $('img').attr("src", "img/erro.jpg");
+    });
+});
+
+
+</script>
+
+</html>
