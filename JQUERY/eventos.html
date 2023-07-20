@@ -4,6 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <style>
+        body{
+            font-size: 14px;
+        }
+        .ex1{
+            width: 460px;
+            padding: 20px;
+            background-color: #1e90ff;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+        label{
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #f8f8ff;
+            max-width: 480px;
+
+        }
+
+        input, textarea{
+            display: flex;
+            padding: 5px;
+            width: 450px;
+        }
+        button{
+            width: 465px;
+            padding: 5px;
+            margin: 10px 0;
+        }
+       
+    </style>
 </head>
 <body>
     <div class="ex1">Aguardando Ação</div>
@@ -11,16 +45,16 @@
     <form action="">
 
         <label>
-            <input type="text">
+            <input type="text"  class="place"  title="digite seu nome:" >
         </label>
         <label>
-            <input type="text">
+            <input type="text" class="place" title="coloque seu email:">
         </label>
         <label>
-            <input type="text">
+            <input type="text" placeholder="senha:">
         </label>
         <label>
-            <textarea rows="3"></textarea>
+            <textarea rows="3" class="place key" title="digiti seu texto:"></textarea>
         </label>
         <label>
             <button>Botão</button>
@@ -29,4 +63,48 @@
         
     </form>
 </body>
+<script>
+
+            $(function(){
+                $('.place').each(function(){
+                    var titu = $(this).attr('title');
+                    var input = $(this);
+
+                    input
+                    .val(titu)
+                    .css('color', '#ccc')
+                    .focusin(function(){
+                        input    .css('color', '#000')
+                        if(input.val() == titu){
+                            input.val('');
+                        }
+                    }).focusout(function(){
+                        if(input.val()== ''){
+                            input.css('color', '#ccc');
+                            input.val(titu)
+                        }
+                    });
+                });
+
+
+
+                var ex = $('.ex1');
+
+                // $('.key').keypress(function(){
+                //     ex.text($(this).val())
+                // })
+
+                // $('.key').keydown(function(){
+                //     ex.text($(this).val())
+                // })
+
+
+                $('.key').keyup(function(){
+                    ex.text($(this).val())
+                })
+
+
+            });
+
+</script>
 </html>

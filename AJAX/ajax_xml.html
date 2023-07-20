@@ -16,47 +16,45 @@
 <script>
 
     
-    function aqui(){
+function aqui(){
 
-        //ajax
-        let pedido = new XMLHttpRequest();
+//ajax
+let pedido = new XMLHttpRequest();
 
-        //reposta
+//reposta
 
-        pedido.onreadystatechange = function(){
-            // verificar comunicaçao
-            if(pedido.readyState == 4 && pedido.status == 200){
+pedido.onreadystatechange = function(){
+    // verificar comunicaçao
+    if(pedido.readyState == 4 && pedido.status == 200){
 
+      //tratameto de dados
+      let dados = this.responseXML;
+        let clients = dados.getElementsByTagName("clientes");
+        let conteudo = '<h2> Clientes </h2>';
 
-                //tratameto de dados
-                let dados = this.responseXML;
-                let clients = dados.getElementsByTagName("clientes");
-                let conteudo = '<h2> Clientes </h2>';
-
-                for(let i = 0; i< clients.length;i++){
-                    conteudo += '<p> Nome:' + clients[i].getElementsByTagName("nome")[0].childNodes[0].nodeValue + '</p>'
-                    conteudo += '<p> Idade:' + clients[i].getElementsByTagName("idade")[0].childNodes[0].nodeValue + '</p>'
-                    conteudo += '<hr>'
-                    
-                }
-
-
-
-
-                //definindo a resposta
-                document.getElementById('caixa1').innerHTML = conteudo;
-
-
-            } else{
-                document.getElementById('caixa1').innerHTML = "erro";
-            }
+        for(let i = 0; i< clients.length;i++){
+            conteudo += '<p> Nome:' + clients[i].getElementsByTagName("nome")[0].childNodes[0].nodeValue + '</p>'
+            conteudo += '<p> Idade:' + clients[i].getElementsByTagName("idade")[0].childNodes[0].nodeValue + '</p>'
+            conteudo += '<hr>'
+            
         }
 
 
-        //pedido
-        pedido.open("GET", "dados.xml", true);
-        pedido.send();
+
+
+        //definindo a resposta
+        document.getElementById('caixa1').innerHTML = conteudo;
+
+    } else{
+        document.getElementById('caixa1').innerHTML = "erro";
     }
+}
+
+
+//pedido
+pedido.open("GET", "dados.xml", true);
+pedido.send();
+}
 
 
 

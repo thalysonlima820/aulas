@@ -13,8 +13,7 @@
 
 <script>
 
-
-    function vai(){
+        function vai(){
 
         //ajax
         let pedido = new XMLHttpRequest();
@@ -26,14 +25,15 @@
 
             document.getElementById("caixa").innerHTML = res;
         }
-        
+
 
 
         //resposta
         pedido.open("get", "texto.txt", true);
         pedido.send();
 
-    }
+        }
+  
 
 
 
