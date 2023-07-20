@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <style>
+        body{
+            font: 14px;
+        }
+        .ex1{
+            width: 460px;
+            padding: 20px;
+            background-color: #1e90ff;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        p, input{
+            width: 480px;
+            padding: 5px;
+            background-color: #000;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+            border: 5px solid #ccc;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        input{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="ex1">Aguardando Ação</div>
+        <p class="ev1">Um Clique</p>
+        <p class="ev2">Dois Clique</p>
+        <input type="text" class="ev3">
+        <p class="ev4">Passe o Mouse</p>
+        <p class="ev5">Click e Solte</p>
+        <p class="ev6">Entra e Sai</p>
+        <p class="ev7">Mouse <span>Ove</span></p>
+        <p class="ev8">Mova o mause no elemento</p>
+
+
+</body>
+
+    <script>
+
+        $(function(){
+            var ex = $('.ex1')
+
+            //CLICK
+            $('.ev1').click(function(){
+                $(this).css("background", "#ccc");
+                ex.text("Você Clicou!");
+            });
+
+
+            // DOIS CLICK
+            $('.ev2').dblclick(function(){
+                $(this).css("background", "#ccc");
+                ex.text("Você deu dois Clicou!");
+            });
+
+            
+            // FOCO
+            $('.ev3').focusin(function(){
+                $(this).css("background", "#ccc");
+                ex.text("Você deu foco!");
+            }).focusout(function(){
+                $(this).css("background", "#000");
+                ex.text("Você tirou o foco!");
+            });
+            
+
+            // MOUSE POR CIMA
+            $('.ev4').hover(function(){
+                $(this).css("background", "#ccc");
+                ex.text("Você passou o mouse!");a
+            }, function(){
+                $(this).css("background", "#000");
+                ex.text("Você tirou o mouse!");
+            });
+
+
+            //CLICA E SOLTA
+            $('.ev5').mousedown(function(){
+                $(this).css("background", "#ccc");
+                ex.text("Você clicou!");
+            }).mouseup(function(){
+                $(this).css("background", "#000");
+                ex.text("Você soltou!");
+            });
+
+
+            //ENTOU E SAIU
+            var a = 0
+            $('.ev6').mouseenter(function(){
+                a+=1;
+                ex.text('entradas do mouse' + a)
+            }).mouseout(function(){
+                // a -=1;
+                ex.text('saida do mouse')
+            });
+
+
+            //PASSOU POR DENTRO E SAIU
+            var b=0
+            $('.ev7').mouseover(function(){
+                b+=1;
+                ex.text('mouse over' + b)
+            }).mouseleave(function(){
+                ex.text('mouse leve')
+            });
+
+
+            //
+            $('.ev8').mousemove(function(move){
+                var localx = move.pageX;
+                var localy = move.pageY;
+
+                ex.text("Movimento X:" + localx + " Movimento Y:" + localy)
+            });
+        })
+
+
+    </script>
+
+</html>

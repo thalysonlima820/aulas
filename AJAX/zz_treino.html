@@ -6,58 +6,54 @@
     <title>Document</title>
 </head>
 <body>
-   <div id="caixa1"></div>
-   <div id="caixa2"></div>
 
-   <button onclick="apertar('dados1.txt', cmd1)">texto 1</button>
-   <button onclick="apertar('dados2.txt', cmd2)">texto 2</button>
-   
+    <div id="caixa1"> </div>
+
+        <button onclick="apresentar()">apresentar</button>
+
 </body>
-<script>
 
-    function apertar( ope, fun){
+    <script>
 
-        //ajax
-        var pedido = new XMLHttpRequest();
+            function apresentar(){
+
+                var pedido = new XMLHttpRequest();
+                //ajax
+                pedido.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                   
+                        let dados = this.responseXML;
+                let clients = dados.getElementsByTagName("clientes");
+                let conteudo = '<h2> Clientes </h2>';
+
+                for(let i = 0; i< clients.length;i++){
+                    conteudo += '<p> Nome:' + clients[i].getElementsByTagName("nome")[0].childNodes[0].nodeValue + '</p>'
+                    conteudo += '<p> Idade:' + clients[i].getElementsByTagName("idade")[0].childNodes[0].nodeValue + '</p>'
+                    conteudo += '<hr>'
+                    
+                }
 
 
-        // tratamento das informaçoes
-        pedido.onreadystatechange = function(){
+                        document.getElementById('caixa1').innerHTML = conteudo;
 
-            // verificaçao
-        if(this.readyState == 4 && this.status == 200){
+                    }
+                }
 
 
-            fun(this)
+               
+
+
+
+                //apresentaçao
+                pedido.open("GET", 'dados.xml' , true);
+                pedido.send();
+
+
+            }
             
-            
+           
+
+    </script>
 
 
-
-        } else{
-            document.getElementById("caixa").innerText = "erro"
-        } }
-
-
-
-
-        //execultar
-        pedido.open("GET", ope, true);
-        pedido.send();
-
-
-
-    }
- 
-
-    function cmd1(p){
-        document.getElementById("caixa1").innerHTML = p.responseText;
-    }
-    function cmd2(p){
-        document.getElementById("caixa2").innerHTML = p.responseText;
-    }
-
-
-
-</script>
 </html>

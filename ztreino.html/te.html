@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav{
+    position: absolute;
+    z-index: 85;
+    background-image: url(bi/biasi.png);
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -50px;
+}
+
+nav p{
+    font-size: 1.2em;
+    margin-right: 170px;
+    color: #DE0000;
+    font-weight: bold;
+    font-style: italic;
+}
+nav p i{
+    color: #DE0000;
+}
+nav ul{
+    justify-content: end;
+    margin-right: 5%;
+    margin-bottom: 15px;
+}
+
+
+
+
+nav li a{
+    width: 0;
+    height: 0;
+    font-weight: bold;
+    color: #DE0000;
+    font-size: 1.5em;
+    z-index: 999;
+}
+nav li a::after{
+    content: '';
+    width: 0px;
+    height: 0px;
+    display: block;
+    border-bottom: 4px solid transparent;
+    transition: .9s ease-in-out;
+}
+
+nav li a:hover:after{
+    width: 100%;
+    height: 0px;
+    padding: 0;
+    border-bottom: 4px solid #dc3545;
+}
+    </style>
+</head>
+<body>
+    <nav>
+
+        <ul aria-label="navegaçao primaria" class="navegcao-primaria" id="home">
+            <p>Mais economia para você <i class="fa-solid fa-heart"></i></p>
+           
+            <li><a href="#home">Menu</a></li>
+            <li><a href="#pr">Promoção</a></li>
+            <li><a href="login.html">Cadastre-se</a></li>
+            <li><a href="#foto">Sobre</a></li>
+            <li ><a target="_blank" href="https://biasi.ninegrid.com.br/Ymlhc2k=">Comprar Online</a></li>
+            <i id="fe"  class="fa-solid fa-cart-shopping"></i>
+        </ul>
+      
+    </nav>
+</body>
+</html>
