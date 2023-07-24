@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="caixa1"> </div>
+
+    <button onclick="aqui()">click</button>
+
+
+</body>
+<script>
+
+    
+function aqui(){
+
+//ajax
+let pedido = new XMLHttpRequest();
+
+//reposta
+
+pedido.onreadystatechange = function(){
+    // verificar comunicaçao
+    if(pedido.readyState == 4 && pedido.status == 200){
+
+      //tratameto de dados
+      let dados = this.responseXML;
+        let clients = dados.getElementsByTagName("prod");
+        let conteudo = '<h2> Produto </h2>';
+        let num = 0
+        for(let i = 0; i< clients.length;i++){
+            num += 1
+            conteudo += '<p> Nome:' + clients[i].getElementsByTagName("xProd")[0].childNodes[0].nodeValue + '</p>'
+            conteudo += '<p> Quantidade:' + clients[i].getElementsByTagName("qCom")[0].childNodes[0].nodeValue + '</p>'
+            conteudo +=  'Numeraçao do produto: ' +  num;
+            conteudo += '<hr>'
+            
+        }
+
+
+
+
+        //definindo a resposta
+        document.getElementById('caixa1').innerHTML = conteudo;
+
+    } else{
+        document.getElementById('caixa1').innerHTML = "erro";
+    }
+}
+
+
+//pedido
+pedido.open("GET", "ztreino/winthor.xml", true);
+pedido.send();
+}
+
+
+
+
+
+</script>
+</html>

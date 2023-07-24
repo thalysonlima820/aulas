@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+        
+  <input type="text" id="inputText">
+  <button onclick="adicionarTexto()">Adicionar</button>
+  
+  
+   <button onclick="apagar()">apagar</button>
+  
+  
+  
+  
+  <ul id="lista"></ul>
+
+
+  <input type="checkbox" class="ola">
+  <label for="ola"> marcar</label>
+</body>
+<script>
+
+        function adicionarTexto(){
+
+            var text = document.getElementById('inputText').value;
+
+            var li = document.createElement('li');
+            li.textContent = text;
+
+            var lista = document.getElementById('lista');
+            lista.appendChild(li);
+
+            var text = document.getElementById('inputText').value = '';
+        }
+
+        function apagar(){
+            var lista = document.getElementById('lista');
+            lista.innerHTML = ''
+        }
+
+
+
+        $(document).ready( function(){
+            $('.ola').click(function(){
+                if($(this).is(':checked')){
+                    alert('marcado');
+                }else{
+                    alert('desmarcado');
+                }
+            })
+        })
+</script>
+</html>

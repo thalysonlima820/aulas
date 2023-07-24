@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <style>
+        /* Estilo padrão para o campo de entrada */
+input {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+/* Estilo para o campo de entrada habilitado */
+input:enabled {
+  color: blue;
+}
+
+    </style>
+</head>
+<body>
+   <button id="enableBtn">Habilitar botão</button>
+<button id="submitBtn" disabled>Enviar</button>
+
+      
+</body>
+<script>
+ $(document).ready(function() {
+  $('#enableBtn').click(function() {
+    $('#submitBtn').removeAttr('disabled');
+  });
+
+  $('#submitBtn:enabled').click(function() {
+    alert('O botão foi clicado!');
+  });
+});
+
+</script>
+</html>

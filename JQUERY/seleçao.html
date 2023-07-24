@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Título da Página</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Coloque os links para folhas de estilo CSS ou scripts JavaScript aqui -->
+</head>
+<body>
+  <!-- Conteúdo da página -->
+  
+  <input type="text" id="inputText">
+  <button onclick="adicionarTexto()">Adicionar</button>
+  
+  
+   <button onclick="apagar()">apagar</button>
+  
+  
+  
+  
+  <ul id="lista"></ul>
+  
+  
+  
+  
+  
+  
+  
+  <input type="checkbox" id="minhaCaixa">
+<label for="minhaCaixa">Minha Caixa de Seleção (Desativada e Marcada)</label>
+
+  
+  <!-- Coloque os scripts JavaScript aqui -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+            <script>
+                var contador = 0; // Variável para contar o número de palavras adicionadas
+
+            function adicionarTexto() {
+            // Obtém o valor do campo de texto
+            var texto = document.getElementById('inputText').value;
+            
+            // Verifica se o campo de texto está vazio
+            if (texto === '') {
+                alert('Digite um texto válido.');
+                return;
+            }
+            
+            // Verifica se o limite de cinco palavras já foi atingido
+            
+            
+            // Cria um novo elemento de lista <li>
+            var novoItem = document.createElement('li');
+            novoItem.textContent = texto;
+            
+            // Adiciona o novo elemento à lista
+            var lista = document.getElementById('lista');
+            lista.appendChild(novoItem);
+            
+            // Limpa o campo de texto
+            document.getElementById('inputText').value = '';
+            
+            // Incrementa o contador de palavras
+            contador++
+            }
+
+
+
+function apagar() {
+  var lista = document.getElementById('lista');
+  lista.innerHTML = '';
+}
+
+
+
+
+
+$(document).ready(function() {
+  // Seleciona a caixa de seleção pelo ID
+  $('#minhaCaixa').click(function() {
+    if ($(this).is(':checked')) {
+      // Ação quando a caixa de seleção é marcada
+      alert('A caixa de seleção está marcada!');
+    } else {
+      // Ação quando a caixa de seleção é desmarcada
+      alert('A caixa de seleção está desmarcada!');
+    }
+  });
+});
+</script>
+
+<input type="checkbox" id="minhaCaixa">
+<label for="minhaCaixa">Minha Caixa de Seleção</label>
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <style>
+        body{
+            font: 14px;
+        }
+        .ex1{
+            width: 460px;
+            padding: 20px;
+            background-color: #1e90ff;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        p, input{
+            width: 480px;
+            padding: 5px;
+            background-color: #000;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+            border: 5px solid #ccc;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        input{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="ex1">Aguardando Ação</div>
+
+        <p class="ev1">Hide</p>
+        <p class="ev2">show</p>
+        <p class="ev3">toggle</p>
+        <input type="text" class="ev4">
+        
+
+
+</body>
+
+    <script>
+
+        $(function(){
+
+            var ex = $('.ex1');
+
+
+
+                $('.ev1').click(function(){
+                    ex.hide('slow')   //fast  ou 1000
+                });
+
+                $('.ev2').click(function(){
+                    ex.show(1000)   //fast  ou 1000
+                })
+                $('.ev3').click(function(){
+                    ex.toggle(1000)   //fast  ou 1000
+                })
+
+                $('.ev4').keyup(function(){
+                    var texto = $(this).val();
+
+                    if(texto == 'hide'){
+                        ex.hide(2000)
+
+                    }if(texto == 'show'){
+                        ex.show(2000)
+
+                    }if(texto == 'toggle'){
+                        ex.toggle(2000)
+
+                    }
+                })
+
+
+
+
+
+
+
+        })
+
+
+    </script>
+
+</html>

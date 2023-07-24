@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <style>
+        body{
+            font: 14px;
+        }
+        .ex1, .ex2{
+            width: 460px;
+            padding: 20px;
+            background-color: #1e90ff;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 5px;
+            display: none;
+        }
+
+        p, input, button{
+            width: 480px;
+            padding: 5px;
+            background-color: #000;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+            border: 5px solid #ccc;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        input{
+            display: flex;
+        }
+        button{
+            margin-left: 33%;
+        }
+
+
+       
+        
+    </style>
+</head>
+<body>
+
+        <div class="ex1">Aguardando Ação</div>
+    
+
+        <button id="btn">botao</button>
+        
+
+</body>
+
+    <script>
+
+$(function(){
+    var ex = $('.ex1');
+    $('#btn').click(function(){
+        if (ex.is(':visible')){
+            ex.fadeOut('2000');
+        } else {
+            ex.fadeIn('2000');
+        }    
+    });
+});
+
+
+
+    </script>
+
+</html>

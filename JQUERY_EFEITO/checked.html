@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <input type="checkbox" id="ch">
+    <label for="ch"> oi</label>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $('#ch').click(function(){
+            if ($(this).is(':checked')) {
+                $(this).siblings('label').css('color', 'red');
+            } else {
+                $(this).siblings('label').css('color', ''); // Remover o estilo quando não estiver marcado
+            }
+        });
+    });
+</script>
+
+</html>

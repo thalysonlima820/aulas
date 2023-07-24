@@ -35,6 +35,7 @@
             width: 465px;
             padding: 5px;
             margin: 10px 0;
+            
         }
        
     </style>
@@ -45,19 +46,19 @@
     <form action="">
 
         <label>
-            <input type="text"  class="place"  title="digite seu nome:" >
+            <input type="text"  class="place ev1"  title="digite seu nome:" name="nome">
         </label>
         <label>
-            <input type="text" class="place" title="coloque seu email:">
+            <input type="text" class="place ev2" title="coloque seu email:" name="email">
         </label>
         <label>
             <input type="text" placeholder="senha:">
         </label>
         <label>
-            <textarea rows="3" class="place key" title="digiti seu texto:"></textarea>
+            <textarea rows="3" class="place key ev3" title="digiti seu texto:"></textarea>
         </label>
         <label>
-            <button>Botão</button>
+            <button class="sele">Selecionar</button>
             <button>Enviar</button>
         </label>
         
@@ -88,22 +89,75 @@
 
 
 
-                
+
 
                 var ex = $('.ex1');
+
+
+                //KEYPRESS
 
                 // $('.key').keypress(function(){
                 //     ex.text($(this).val())
                 // })
+
+
+                //KEYDOWN
 
                 // $('.key').keydown(function(){
                 //     ex.text($(this).val())
                 // })
 
 
-                $('.key').keyup(function(){
-                    ex.text($(this).val())
+                //KEYUP
+                
+                // $('.key').keyup(function(){
+                //     ex.text($(this).val())
+                // })
+
+
+
+                $('.ev1').focus(function(){
+                   
+                    ex.text($(this).attr('title'))
+                }).keyup(function(){
+                    if($(this).val() == 'thalyson'){
+                        $(this).css('color', 'black')
+                        $('.ev2').focus();
+                    }else{
+                        $(this).css('color', 'red')
+                    }
+                });
+
+
+                // $('.ev1').blur(function(){
+                //     ex.text("saida do campo: " + $(this).attr('name'));
+                // });
+
+
+                $('.ev1').change(function(){
+                    ex.text(" campo alterado: " + $(this).val());
+                });
+
+
+
+
+                $('.sele').click(function(){
+                    $('.ev3').select();
+                    document.execCommand('copy')
+                    $('form').submit(function(){
+                        return false;
+                    })
                 })
+
+
+
+
+
+
+
+
+
+
 
 
             });
